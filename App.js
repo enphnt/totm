@@ -16,7 +16,7 @@ export default class PizzaTranslator extends Component {
           onChangeText={(text) => this.setState({ text })}
         />
         <Text style={{ padding: 20, fontSize: 45 }}>
-          {this.state.text}
+          {this.state.text.split(' ').map((word) => word && '🍕').join(' ')}
         </Text>
       </View>
     )
