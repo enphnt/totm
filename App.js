@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, Text, View, TextInput } from "react-native";
+import { AppRegistry, Text, View, Alert, TextInput, Button } from "react-native";
 
 export default class PizzaTranslator extends Component {
   constructor(props) {
@@ -18,6 +18,11 @@ export default class PizzaTranslator extends Component {
         <Text style={{ padding: 20, fontSize: 45 }}>
           {this.state.text.split(' ').map((word) => word && '🍕').join(' ')}
         </Text>
+        <Button
+          onPress={() => {
+            Alert.alert("You pushed it!");
+          }}
+          title="push it" />
       </View>
     )
   }
