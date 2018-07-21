@@ -12,5 +12,5 @@ WIP game which uses react+gh-pages to simplify the boring bits. It's live here: 
 
 Deployment use `gh-pages` and currently just pushes latest bundle to `master`. TODO: improve the messages of each deployment.
 
-1. To deploy, `npm run deploy`. On success, you should see the message `Published`.
+1. To deploy, `yarn run deploy`. On success, you should see the message `Published`.
 2. Verify the update works as expected on https://enphnt.github.io/totm
