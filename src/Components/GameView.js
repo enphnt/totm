@@ -19,7 +19,7 @@ class GameView extends Component {
 
   getAnswerOptions() {
     fetch(
-      `http://google.com/complete/search?client=chrome&q=${this.state.term}`,
+      `https://suggestqueries.google.com/complete/search?client=chrome&q=${this.state.term}`,
       {
         mode: 'cors'
       })
