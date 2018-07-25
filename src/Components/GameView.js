@@ -2,22 +2,18 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Button, Divider, TextField, Icon } from '@material-ui/core/';
 import getSuggestions from '../api/getSuggestions';
-import $ from 'jquery';
 import fetchJsonp from 'fetch-jsonp';
+import Button5050 from './Button5050';
+import ButtonDrop from './ButtonDrop';
+import ButtonPass from './ButtonPass';
+import SearchField from './SearchField';
 
 const term = "can i haz ";
 const buttonStyle = {
-  width: "90%",
+  width: "95%",
   lineHeight: "1.5em",
   fontSize: ".8em",
-  margin: "2px",
-};
-
-const buttonSecondaryStyle = {
-  width: "30%",
-  lineHeight: "1.5em",
-  fontSize: ".7em",
-  margin: "5px",
+  margin: "4px",
 };
 
 class GameView extends Component {
@@ -94,52 +90,24 @@ class GameView extends Component {
 
   render() {
     return (
-
       <div className="GameView">
-        <div className="search-term">
-          <TextField
-            {...$('search-term')}
-            className="search-term"
-            floatinglabeltext={this.state.term}
-            InputLabelProps={{
-              shrink: true,
-            }}
-            placeholder="type your phrase here..."
-            helperText="then guess which result below is the most popular google search "
-            fullWidth
-            margin="normal"
-          />
+        <Button variant="extendedFab" aria-label="Delete">
+          <Icon>🕵️‍♂️ </Icon>
+          <div style={{ padding: "5px" }}>
+            Get a phrase!
+          </div>
+        </Button>
+        <div>
+          <h4>or</h4>
         </div>
+        <SearchField />
         <div>
           <h2>{this.state.term}...</h2>
         </div>
         {this.state.answers.buttons}
-        <div style={{ margin: "5px" }}>
-          <Button variant="raised" color="secondary" style={buttonSecondaryStyle}>
-            <h2>50/50</h2>
-            <div style={{ paddingLeft: 25 }}>
-              show worst vs best
-              <br />
-              ( 3 / 3 )
-            </div>
-          </Button>
-          <Button variant="raised" color="secondary" style={buttonSecondaryStyle}>
-            <h2> Pass </h2>
-            <div style={{ paddingLeft: 25 }}>
-              use a new phrase
-              <br />
-              ( 3 / 3 )
-             </div>
-          </Button>
-          <Button variant="raised" color="secondary" style={buttonSecondaryStyle} >
-            <h2> Drop </h2>
-            <div style={{ paddingLeft: 25 }}>
-              Eliminate bottom 2
-              <br />
-              ( 3 / 3 )
-            </div>
-          </Button>
-        </div>
+        <Button5050 />
+        <ButtonPass />
+        <ButtonDrop />
       </div >
     );
   }
