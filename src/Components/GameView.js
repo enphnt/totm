@@ -39,7 +39,7 @@ class GameView extends Component {
         this.setState({
           answerButtons: matchingSuggestions.map((answer) => {
             return (
-              <div key={answer} style={{ width: "100%" }}>
+              <div key={answer}>
                 <Divider />
                 <Button variant="raised" color="primary" style={{ width: "80%", lineHeight: "40px" }}>
                   {answer}
@@ -60,7 +60,7 @@ class GameView extends Component {
   render() {
     return (
 
-      <div>
+      <div className="GameView">
         <TextField {...$('search-term')} floatingLabelText="when can i know " />
         <div>
           <h2>{this.state.term}</h2>
