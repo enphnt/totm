@@ -1,34 +1,27 @@
 .App {
   text-align: center;
   display: flex;
-  min-height: 100vh;
   flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
 }
 
 .App-header {
   flex: 1;
-  background-color: #212;
-  height: 40px;
-  padding-top: 20px;
-  color: white;
 }
 
 .GameView {
   flex: 1;
   overflow: scroll;
-  padding-bottom: 10px;
   padding: 1em;
 }
 
 .App-footer {
   flex: 1;
-  bottom:0;
-  background-color: #212;
-  height: 40px;
-  color: white;
 }
 
 .search-term {
   padding-left: 4em;
   padding-right: 4em;
 }
+

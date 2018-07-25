@@ -1,15 +1,25 @@
-import React, { Component } from 'react';
 
-class Header extends Component {
+import React from 'react'
+import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
+import Typography from '@material-ui/core/Typography'
 
-  render() {
-    var currentYear = (new Date()).getFullYear();
+var currentYear = (new Date()).getFullYear();
 
-    return (
-      <footer id="footer" className="App-footer">
-        <p>&copy; Copyright {currentYear} Nathan Phennel.</p>
-      </footer>
-    );
-  }
+const Footer = () => {
+  return (
+    <div>
+      <AppBar position="static">
+        <Toolbar>
+          <Typography className="App-footer" variant="caption" color="inherit">
+            &copy; T . o . t . M ({currentYear})
+            <br />
+            Nathan Phennel & Habib Adam
+                </Typography>
+        </Toolbar>
+      </AppBar>
+    </div>
+  )
 }
-export default Header;
+
+export default Footer;

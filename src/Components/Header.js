@@ -1,12 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react'
+import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
+import Typography from '@material-ui/core/Typography'
 
-class Header extends Component {
-  render() {
-    return (
-      <header id="header" className="App-header">
-        T o t M
-      </header>
-    );
-  }
+const Header = () => {
+  return (
+    <div>
+      <AppBar position="static">
+        <Toolbar>
+          <Typography className="App-header" variant="title" color="inherit">
+            T . o . t . M
+                </Typography>
+        </Toolbar>
+      </AppBar>
+    </div>
+  )
 }
+
 export default Header;
