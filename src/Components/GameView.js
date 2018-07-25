@@ -7,6 +7,7 @@ import Button5050 from './Button5050';
 import ButtonDrop from './ButtonDrop';
 import ButtonPass from './ButtonPass';
 import SearchField from './SearchField';
+import searchTerms from '../data/search-terms';
 
 const term = "can i haz ";
 const buttonStyle = {
@@ -20,12 +21,20 @@ class GameView extends Component {
   constructor() {
     super();
     this.state = {
+      term: this.getRandomSearchTerm(),
       answers: {
         top: [],
         buttons: [],
       },
-      term: term,
     };
+  }
+
+  getRandomSearchTerm() {
+    const randomInt = Math.floor(Math.random() * (searchTerms.length));
+    let term = searchTerms[randomInt].term;
+    console.log(term);
+
+    return term;
   }
 
   getAnswerOptions() {
@@ -85,13 +94,17 @@ class GameView extends Component {
       });
   }
   componentDidMount() {
-    this.getAnswerOptions(term)
+    this.getRandomSearchTerm();
+    this.getAnswerOptions(term);
   }
 
   render() {
     return (
       <div className="GameView">
-        <Button variant="extendedFab" aria-label="Delete">
+        <Button
+          variant="extendedFab"
+          aria-label="Delete"
+        >
           <Icon>🕵️‍♂️ </Icon>
           <div style={{ padding: "5px" }}>
             Get a phrase!
