@@ -6,7 +6,19 @@ import $ from 'jquery';
 import fetchJsonp from 'fetch-jsonp';
 
 const term = "when do i know if ";
+const buttonStyle = {
+  width: "90%",
+  lineHeight: "1.5em",
+  fontSize: ".8em",
+  margin: "2px",
+};
 
+const buttonSecondaryStyle = {
+  width: "30%",
+  lineHeight: "1.5em",
+  fontSize: ".7em",
+  margin: "5px",
+};
 
 class GameView extends Component {
   constructor() {
@@ -37,8 +49,10 @@ class GameView extends Component {
           answerButtons: matchingSuggestions.map((answer) => {
             return (
               <div key={answer}>
-                <Divider />
-                <Button variant="raised" color="primary" style={{ width: "80%", lineHeight: "40px" }}>
+                <Button
+                  variant="raised"
+                  color="primary"
+                  style={buttonStyle}>
                   {answer}
                 </Button>
               </div>
@@ -75,34 +89,36 @@ class GameView extends Component {
           />
         </div>
         <div>
-          <h2>{this.state.term}</h2>
+          <h2>{this.state.term}...</h2>
         </div>
         {this.state.answerButtons}
-        <Button variant="raised" color="secondary">
-          <h2> 50 / 50 </h2>
-          <div style={{ paddingLeft: 10 }}>
-            (Only worst and best answers)
-          <br />
-            ( 3 / 3 )
-          </div>
-        </Button>
-        <Button variant="raised" color="secondary">
-          <h2> Pass </h2>
-          <div style={{ paddingLeft: 10 }}>
-            Refresh for new Question
-          <br />
-            ( 3 / 3 )
-          </div>
-        </Button>
-        <Button variant="raised" color="secondary">
-          <h2> Drop </h2>
-          <div style={{ paddingLeft: 10 }}>
-            Eliminate bottom 4
-          <br />
-            ( 3 / 3 )
-          </div>
-        </Button>
-      </div>
+        <div style={{ margin: "5px" }}>
+          <Button variant="raised" color="secondary" style={buttonSecondaryStyle}>
+            <h2>50/50</h2>
+            <div style={{ paddingLeft: 25 }}>
+              show worst vs best
+              <br />
+              ( 3 / 3 )
+            </div>
+          </Button>
+          <Button variant="raised" color="secondary" style={buttonSecondaryStyle}>
+            <h2> Pass </h2>
+            <div style={{ paddingLeft: 25 }}>
+              use a new phrase
+              <br />
+              ( 3 / 3 )
+             </div>
+          </Button>
+          <Button variant="raised" color="secondary" style={buttonSecondaryStyle} >
+            <h2> Drop </h2>
+            <div style={{ paddingLeft: 25 }}>
+              Eliminate bottom 4
+              <br />
+              ( 3 / 3 )
+            </div>
+          </Button>
+        </div>
+      </div >
     );
   }
 }
