@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import { Button, Divider, TextField, Icon } from '@material-ui/core/';
-import getSuggestions from '../api/getSuggestions';
+import { Button, Icon } from '@material-ui/core/';
 import fetchJsonp from 'fetch-jsonp';
 import Button5050 from './Button5050';
 import ButtonDrop from './ButtonDrop';
@@ -105,7 +103,7 @@ class GameView extends Component {
           variant="extendedFab"
           aria-label="Delete"
         >
-          <Icon>🕵️‍♂️ </Icon>
+          <Icon><span role="img" aria-label="search">🕵️‍♂️ </span></Icon>
           <div style={{ padding: "5px" }}>
             Get a phrase!
           </div>
