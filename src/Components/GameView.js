@@ -5,7 +5,7 @@ import getSuggestions from '../api/getSuggestions';
 import $ from 'jquery';
 import fetchJsonp from 'fetch-jsonp';
 
-const term = "how do i tell my ";
+const term = "when do i know if ";
 
 
 class GameView extends Component {
@@ -58,7 +58,7 @@ class GameView extends Component {
     return (
 
       <div className="GameView">
-        <TextField {...$('search-term')} floatinglabeltext="when can i know " />
+        <TextField {...$('search-term')} floatinglabeltext={this.state.term} />
         <div>
           <h2>{this.state.term}</h2>
         </div>
