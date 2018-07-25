@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Button, Divider, TextField } from '@material-ui/core/';
 import getSuggestions from '../api/getSuggestions';
 import $ from 'jquery';
+import fetchJsonp from 'fetch-jsonp';
 
 const term = "how do i tell my ";
 
@@ -18,11 +19,7 @@ class GameView extends Component {
   }
 
   getAnswerOptions() {
-    fetch(
-      `https://suggestqueries.google.com/complete/search?client=chrome&q=${this.state.term}`,
-      {
-        mode: 'cors'
-      })
+    fetchJsonp(`https://suggestqueries.google.com/complete/search?client=chrome&q=${this.state.term}`)
       .then(response => {
         return response.json();
       })
