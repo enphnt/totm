@@ -61,7 +61,7 @@ class GameView extends Component {
     return (
 
       <div className="GameView">
-        <TextField {...$('search-term')} floatingLabelText="when can i know " />
+        <TextField {...$('search-term')} floatinglabeltext="when can i know " />
         <div>
           <h2>{this.state.term}</h2>
         </div>
