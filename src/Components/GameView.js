@@ -46,6 +46,8 @@ class GameView extends Component {
           })
         });
 
+
+
         console.log("shortenedTerm", shortenedTerm);
         console.log("suggestions", suggestions);
       });
@@ -58,7 +60,20 @@ class GameView extends Component {
     return (
 
       <div className="GameView">
-        <TextField {...$('search-term')} floatinglabeltext={this.state.term} />
+        <div className="search-term">
+          <TextField
+            {...$('search-term')}
+            className="search-term"
+            floatinglabeltext={this.state.term}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            placeholder="type your phrase here..."
+            helperText="then guess which result below is the most popular google search "
+            fullWidth
+            margin="normal"
+          />
+        </div>
         <div>
           <h2>{this.state.term}</h2>
         </div>

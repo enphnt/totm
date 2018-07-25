@@ -17,6 +17,7 @@
   flex: 1;
   overflow: scroll;
   padding-bottom: 10px;
+  padding: 1em;
 }
 
 .App-footer {
@@ -25,4 +26,9 @@
   background-color: #212;
   height: 40px;
   color: white;
+}
+
+.search-term {
+  padding-left: 4em;
+  padding-right: 4em;
 }
