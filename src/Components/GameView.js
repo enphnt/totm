@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { Button, Divider, TextField } from '@material-ui/core/';
+import { Button, Divider, TextField, Icon } from '@material-ui/core/';
 import getSuggestions from '../api/getSuggestions';
 import $ from 'jquery';
 import fetchJsonp from 'fetch-jsonp';
 
-const term = "when do i know if ";
+const term = "can i haz ";
 const buttonStyle = {
   width: "90%",
   lineHeight: "1.5em",
@@ -24,8 +24,10 @@ class GameView extends Component {
   constructor() {
     super();
     this.state = {
-      answerOptions: [],
-      answerButtons: [],
+      answers: {
+        top: [],
+        buttons: [],
+      },
       term: term,
     };
   }
@@ -36,37 +38,57 @@ class GameView extends Component {
         return response.json();
       })
       .then(data => {
-        const fuzzinessThreshold = 0.68;
-        const shortenedTerm = term.substring(0, (term.length - 1) * fuzzinessThreshold)
-        const termRegexp = new RegExp(shortenedTerm, "g");
-        const suggestions = data[1];
-        const matchingSuggestions = suggestions
-          .filter(suggestion => suggestion.match(termRegexp));
+        const suggestionsRaw = data[1];
+        console.log(data);
 
-        this.setState({ answerOptions: matchingSuggestions })
+        // note: the suggestions array is received in ranked order
+        //       and we filter out suggestions starting with http to
+        //       remove direct URL suggestions
+        const suggestions = suggestionsRaw
+          .filter(suggestion => suggestion.indexOf("http"));
 
-        this.setState({
-          answerButtons: matchingSuggestions.map((answer) => {
-            return (
-              <div key={answer}>
-                <Button
-                  variant="raised"
-                  color="primary"
-                  style={buttonStyle}>
-                  {answer}
-                </Button>
-              </div>
-            );
-          })
-        });
+        if (suggestions.length > 5) {
+          const suggestionsTrimmed = suggestions.slice(0, 5);
 
-
-
-        console.log("shortenedTerm", shortenedTerm);
-        console.log("suggestions", suggestions);
+          this.setState({
+            answers: {
+              top: suggestionsTrimmed,
+              buttons: suggestionsTrimmed.map((answer) => {
+                return (
+                  <div key={answer}>
+                    <Button
+                      variant="raised"
+                      color="primary"
+                      style={buttonStyle}>
+                      {answer}
+                    </Button>
+                  </div>
+                );
+              })
+            }
+          });
+        } else {
+          this.setState({
+            answers: {
+              buttons:
+                <div>
+                  <Button
+                    variant="raised"
+                    color="disabled"
+                    style={buttonStyle}>
+                    <Icon>!</Icon>
+                    Sorry, the phrase doesn't have enough related searches. Try another phrase.
+                  </Button>
+                </div>
+            }
+          });
+        }
+      })
+      .catch(err => {
+        console.log('parsing failed', err)
       });
   }
-  componentWillMount() {
+  componentDidMount() {
     this.getAnswerOptions(term)
   }
 
@@ -91,7 +113,7 @@ class GameView extends Component {
         <div>
           <h2>{this.state.term}...</h2>
         </div>
-        {this.state.answerButtons}
+        {this.state.answers.buttons}
         <div style={{ margin: "5px" }}>
           <Button variant="raised" color="secondary" style={buttonSecondaryStyle}>
             <h2>50/50</h2>
@@ -112,7 +134,7 @@ class GameView extends Component {
           <Button variant="raised" color="secondary" style={buttonSecondaryStyle} >
             <h2> Drop </h2>
             <div style={{ paddingLeft: 25 }}>
-              Eliminate bottom 4
+              Eliminate bottom 2
               <br />
               ( 3 / 3 )
             </div>
