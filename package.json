@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "https://enphnt.github.io/totm",
   "scripts": {
-    "start": "react-scripts start",
+    "start": "PORT=3006 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "predeploy": "npm run build",
